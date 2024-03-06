@@ -62,6 +62,18 @@
                             <img src="{% static 'myapp\assets\images\logo.svg' %}" alt="">
                         </div>
                         <h5>Sign Up</h5>
+
+                        {% if s_msg %}
+                            <div class="alert alert-success" role="alert">
+                                {{s_msg}}
+                            </div>
+                        {% endif %}
+                        {% if e_msg %}
+                            <div class="alert alert-danger" role="alert">
+                                {{e_msg}}
+                            </div>
+                        {% endif %}
+
                     </div>
                     <select name="role" id="role" class="dropd form-control">
                         <!-- <option value="Select Role" aria-readonly="true">Select Role</option> -->
