@@ -64,6 +64,12 @@
                                 {{e_msg}}
                             </div>
                         {% endif %}
+
+                        {% if s_msg %}
+                            <div class="alert alert-success" role="alert">
+                                {{s_msg}}
+                            </div>
+                        {% endif %}
                     <div class="content">                                                
                         <div class="input-group input-lg">
                             <input type="email" class="form-control" name="email" placeholder="Enter Email">
@@ -86,10 +92,6 @@
             </div>
         </div>
     </div>
-
-
-            
-            
         </div>
 
         <!-- Scripts -->

@@ -96,3 +96,69 @@ def logout(request):
         del request.session['email']
         return HttpResponseRedirect(reverse('login'))
     return render(request,"myapp/login.html")
+
+
+def doctor_profile(request):
+    if "email" in request.session:
+        uid = User.objects.get(email = request.session['email'])
+        if uid.role == 'Doctor':
+            did = Doctor.objects.get(uid=uid)
+            context = {
+                'uid': uid,
+                'did': did
+            }
+            return render(request,"myapp/doctor_profile.html",context)
+        
+def change_password(request):
+    if "email" in request.session:
+        uid = User.objects.get(email = request.session['email'])
+        if uid.role == 'Doctor':
+            did = Doctor.objects.get(uid=uid)
+
+            currentpassword = request.POST['currentpassword']
+            newpassword = request.POST['newpassword']
+
+            if uid.password == currentpassword:
+                uid.password = newpassword
+                uid.save()
+                del request.session['email']
+                s_msg = 'Successfully Password Reset !!'
+                return render(request,"myapp/login.html",{'s_msg':s_msg})
+            else:
+                del request.session['email']
+                e_msg = 'You have entered wrong password'
+                return render(request,"myapp/login.html",{'e_msg':e_msg})
+
+
+def doctor_profile_update(request):
+    if "email" in request.session:
+        uid = User.objects.get(email = request.session['email'])
+        if uid.role == 'Doctor':
+            did = Doctor.objects.get(uid=uid)
+
+            did.username = request.POST['username']
+            # did.email = request.POST['email']
+            did.contactno = request.POST['contactno']
+            did.specification = request.POST['specification']
+            did.experience = request.POST['experience']
+            did.address = request.POST['address']
+            did.visiting_hours = request.POST['visiting_hours']
+
+            did.save()
+            context = {
+                'uid': uid,
+                'did': did
+            }
+            return render(request,"myapp/doctor_profile.html",context)
+
+
+def doctors(request):
+    if "email" in request.session:
+        uid = User.objects.get(email = request.session['email'])
+        if uid.role == 'Doctor':
+            did = Doctor.objects.get(uid=uid)
+            context = {
+                'uid': uid,
+                'did': did
+            }
+            return render(request,"myapp/doctors.html",context)

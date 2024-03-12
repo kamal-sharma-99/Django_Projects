@@ -22,6 +22,10 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('login/', views.login, name='login'),
     path('signup', views.signup, name='signup'),
+    path('doctor-profile', views.doctor_profile, name='doctor-profile'),
+    path('doctor-profile-update', views.doctor_profile_update, name='doctor-profile-update'),
+    path('doctors', views.doctors, name='doctors'),
+    path('change-password', views.change_password, name='change-password'),
     # path('doctor-home', views.doctor_home, name='doctor-home'),
     path('logout', views.logout, name='logout'),
 ]

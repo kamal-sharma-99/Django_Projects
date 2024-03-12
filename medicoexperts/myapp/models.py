@@ -20,6 +20,7 @@ class Doctor(models.Model):
     experience=models.CharField(max_length=10,null=True,blank=True)
     address=models.TextField(null=True,blank=True)
     visiting_hours=models.CharField(max_length=20,null=True,blank=True)
+    pic=models.FileField(upload_to='media/images/',default='media/doctor.png')
 
     def __str__(self):
         return self.username
@@ -33,6 +34,7 @@ class Patient(models.Model):
     age=models.CharField(max_length=20,null=True,blank=True)
     gender=models.CharField(max_length=20,null=True,blank=True)
     address=models.CharField(max_length=20,null=True,blank=True)
+    pic=models.FileField(upload_to='media/images/',default='media/patient.png')
     
     def __str__(self):
         return self.username
